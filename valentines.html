@@ -21,5 +21,19 @@
 			</div>
 		</div>
 		<div class="button"><button id="openButton">&#129293; Open Me !</button></div>
+		<script>
+			document.getElementById("openButton").addEventListener("click", function() {
+				const lid = document.querySelector(".lid");
+				const card = document.querySelector(".card");
+
+				// Tranform lid
+				lid.style.transform = "rotatex(-180deg)";
+
+				setTimeout(() => {
+					card.style.zIndex = "3";
+					card.style.transform = "translatey(-9.5vmin)";
+				}, 400);
+			});
+		</script>
 	</body>
 </html>

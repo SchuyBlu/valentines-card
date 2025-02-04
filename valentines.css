@@ -41,8 +41,10 @@ body {
 	align-items: center;
 	left: 2.5vmin;
 	top: 0vmin;
-	animation: slide-out 0.5s ease-out forwards 0.4s;
-	z-index: 2;
+	transform: translatey(0);
+	transition: transform 0.5s ease-out;
+	/*animation: slide-out 0.5s ease-out forwards 0.4s;*/
+	z-index: 1;
 }
 
 .message {
@@ -90,9 +92,10 @@ body {
 	border-right: 24vmin solid transparent;
 	top: 0;
 	transform-origin: top;
-	transform: rotateX(0deg); /* Start fully down (closed) */
-	animation: open-lid 0.5s ease-out forwards;
-	z-index: 1;
+	transform: rotateX(0deg);
+	transition: transform 0.5s ease-out;
+	/*animation: open-lid 0.5s ease-out forwards;*/
+	z-index: 2;
 }
 
 
