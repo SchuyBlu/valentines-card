@@ -14,6 +14,7 @@ body {
 	font-family: "Pangolin", cursive;
 	font-size: 1vmin;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 }
@@ -21,6 +22,9 @@ body {
 .container {
 	position: relative;
 	top: 0vmin;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .envelope {
@@ -43,7 +47,6 @@ body {
 	top: 0vmin;
 	transform: translatey(0);
 	transition: transform 0.5s ease-out;
-	/*animation: slide-out 0.5s ease-out forwards 0.4s;*/
 	z-index: 1;
 }
 
@@ -94,7 +97,6 @@ body {
 	transform-origin: top;
 	transform: rotateX(0deg);
 	transition: transform 0.5s ease-out;
-	/*animation: open-lid 0.5s ease-out forwards;*/
 	z-index: 2;
 }
 
@@ -140,10 +142,9 @@ body {
 }
 
 .button {
-	position: absolute;
-	top: 75vmin;
-	left: 50%;
-	transform: translatex(-50%);
+	position: relative;
+	margin-top: 11vmin;
+	text-align: center;
 	z-index: 5;
 }
 
@@ -178,14 +179,14 @@ body {
 
 @keyframes open-lid {
 	0% {
-		transform: rotateX(0deg); /* Start closed */
+		transform: rotateX(0deg);
 		z-index: 3;
 	}
 	90% {
 		z-index: 1;
 	}
 	100% {
-		transform: rotateX(-180deg); /* Flip up to open */
+		transform: rotateX(-180deg);
 	}
 }
 
