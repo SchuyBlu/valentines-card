@@ -27,6 +27,13 @@ body {
 	align-items: center;
 }
 
+@media (max-width: 768px) {
+	.container {
+		transform: scale(1.2);
+		transform-origin: center top;
+	}
+}
+
 .envelope {
 	position: relative;
 	background: #f980a1;
