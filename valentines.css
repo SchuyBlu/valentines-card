@@ -194,19 +194,24 @@ body {
 }
 
 .reset button {
-	background-color: #ffd1dd;
-	border-color: #944b5e;
+	background-color: #c47086;
+	border-color: #693c47;
 	border-radius: 10vmin;
 	display: flex;
 	justify-content: center;
 	color: #45272f;
-	font-family: Lucida Sans Unicode;
-	padding: 0.4vmin 1vmin 0.4vmin 1vmin;
-	font-size: 4vmin;
+	padding: 0.4vmin 0vmin 0.4vmin 0vmin;
 }
 
 .reset button:hover {
 	background-color: #d4a1ae;
+}
+
+.reset button img {
+	transform: scale(0.9);
+	max-width: 4vmin;
+	max-height: 4vmin;
+	padding: 0.5vmin 0.95vmin 0.5vmin 0.95vmin;
 }
 
 @keyframes slide-out {
