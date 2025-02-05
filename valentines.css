@@ -152,9 +152,18 @@ body {
 	transform-origin: 100% 100%;
 }
 
+.buttons {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 3vmin;
+	margin-top: 11vmin;
+}
+
 .button {
 	position: relative;
-	margin-top: 11vmin;
+	margin: 0;
 	text-align: center;
 	z-index: 5;
 }
@@ -175,6 +184,29 @@ body {
 
 .button button:hover {
 	background-color: #c77d91;
+}
+
+.reset {
+	position: relative;
+	margin: 0;
+	text-align: center;
+	z-index: 5;
+}
+
+.reset button {
+	background-color: #ffd1dd;
+	border-color: #944b5e;
+	border-radius: 10vmin;
+	display: flex;
+	justify-content: center;
+	color: #45272f;
+	font-family: Lucida Sans Unicode;
+	padding: 0.4vmin 1vmin 0.4vmin 1vmin;
+	font-size: 4vmin;
+}
+
+.reset button:hover {
+	background-color: #d4a1ae;
 }
 
 @keyframes slide-out {

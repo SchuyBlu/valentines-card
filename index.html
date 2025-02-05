@@ -19,20 +19,42 @@
 				<div class="lid"></div>
 				<div class="shadow"></div>
 			</div>
-			<div class="button"><button id="openButton">&#129293; Open Me !</button></div>
+			<div class="buttons">
+				<div class="button"><button id="openButton">&#129293; Open Me !</button></div>
+				<div class="reset"><button id="resetButton">&#x21bb;</button></div>
+			</div>
 		</div>
 		<script>
+			let opened = false;
 			document.getElementById("openButton").addEventListener("click", function() {
-				const lid = document.querySelector(".lid");
-				const card = document.querySelector(".card");
+				if (!opened) {
+					const lid = document.querySelector(".lid");
+					const card = document.querySelector(".card");
 
-				// Tranform lid
-				lid.style.transform = "rotatex(-180deg)";
+					// Tranform lid
+					lid.style.transform = "rotatex(-180deg)";
 
-				setTimeout(() => {
-					card.style.zIndex = "3";
-					card.style.transform = "translatey(-9.5vmin)";
-				}, 400);
+					setTimeout(() => {
+						card.style.zIndex = "3";
+						card.style.transform = "translatey(-9.5vmin)";
+					}, 400);
+					opened = true;
+				}
+			});
+
+			document.getElementById("resetButton").addEventListener("click", function() {
+				if (opened) {
+					const lid = document.querySelector(".lid");
+					const card = document.querySelector(".card");
+
+					card.style.transform = "translatey(0)";
+
+					setTimeout(() => {
+						card.style.zIndex = "1";
+						lid.style.transform = "rotatex(0deg)";
+					}, 400);
+					opened = false;
+				}
 			});
 		</script>
 	</body>
