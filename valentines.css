@@ -27,7 +27,11 @@ body {
 	align-items: center;
 }
 
-@media (max-aspect-ratio: 1/1) {
+
+@media (orientation: portrait) {
+	html, body {
+		overflow: hidden;
+	}
 	.container {
 		transform: scale(1.4);
 		transform-origin: center top;
