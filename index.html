@@ -12,7 +12,7 @@
 		<div class="container">
 			<div class="envelope">
 				<div class="card">
-					<h1 class="message">Do you know!<br>What's on the Valentine's Day menu?<br>Me n U :)</h1>
+					<h1 class="message" id="message">Do you know!<br>What's on the Valentine's Day menu?<br>Me n U :)</h1>
 					<div class="heart"></div>
 				</div>
 				<div class="cover"></div>
@@ -27,38 +27,6 @@
 					</button></div>
 			</div>
 		</div>
-		<script>
-			let opened = false;
-			document.getElementById("openButton").addEventListener("click", function() {
-				if (!opened) {
-					const lid = document.querySelector(".lid");
-					const card = document.querySelector(".card");
-
-					// Tranform lid
-					lid.style.transform = "rotatex(-180deg)";
-
-					setTimeout(() => {
-						card.style.zIndex = "3";
-						card.style.transform = "translatey(-9.5vmin)";
-					}, 400);
-					opened = true;
-				}
-			});
-
-			document.getElementById("resetButton").addEventListener("click", function() {
-				if (opened) {
-					const lid = document.querySelector(".lid");
-					const card = document.querySelector(".card");
-
-					card.style.transform = "translatey(0)";
-
-					setTimeout(() => {
-						card.style.zIndex = "1";
-						lid.style.transform = "rotatex(0deg)";
-					}, 400);
-					opened = false;
-				}
-			});
-		</script>
+		<script src="animations.js"></script>
 	</body>
 </html>
