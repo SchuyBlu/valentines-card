@@ -53,7 +53,7 @@ function changeMessage(messages, changed) {
 
 function triggerNudge(button) {
 	button.classList.remove("button-nudge");
-	setTimeout(() => button.classList.add("button-nudge"), 3000);
+	setTimeout(() => button.classList.add("button-nudge"), 10);
 }
 
 function startNudgeLoop(button) {
@@ -62,20 +62,18 @@ function startNudgeLoop(button) {
 	}
 }
 
+function stopNudgeLoop() {
+	if (nudgeInterval) {
+		clearInterval(nudgeInterval);
+		nudgeInterval = null;
+	}
+}
+
 document.getElementById("openButton").addEventListener("click", function() {
 	const lid = document.querySelector(".lid");
 	const card = document.querySelector(".card");
 
-	startNudgeLoop(this);
-
-	// Only nudge on first click.
-	if (timesClicked === 1) {
-		if (nudgeInterval) {
-			clearInterval(nudgeInterval);
-			nudgeInterval = null;
-		}
-	}
-	console.log(timesClicked);
+	stopNudgeLoop();
 	timesClicked++;
 
 	if (!opened) {
@@ -114,6 +112,11 @@ document.getElementById("openButton").addEventListener("click", function() {
 			card.style.transform = "translatey(-9.5vmin)";
 		}, 1800);
 
+	}
+	if (timesClicked > 1) {
+		setTimeout(() => startNudgeLoop(this), 4000);
+	} else {
+		setTimeout(() => startNudgeLoop(this), 3000);
 	}
 });
 
