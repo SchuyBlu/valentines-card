@@ -1,6 +1,6 @@
 const all_messages = [
 	"Do you know!\nWhat's on the Valentine's Day menu?\nMe n U :)",
-	"Hey!\nGuess what's on the Valentine's menu?\nStill hoping it's Me + u :)",
+	"Hey!\nYou know what I want for Valentine's?\nStill hoping it's Me + u :)",
 	"\uD83D\uDC9E You had me at \"Hello\" :)",
 	"The things I'd do for a little chocolate \uD83D\uDC95",
 	"Hey you!\nNot sure if cupid messed up but\nhere I am :)",
