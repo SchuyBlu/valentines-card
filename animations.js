@@ -76,7 +76,6 @@ document.getElementById("openButton").addEventListener("click", function() {
 	const card = document.querySelector(".card");
 
 	stopNudgeLoop();
-	timesClicked++;
 
 	if (!opened) {
 		// Tranform lid
@@ -115,6 +114,11 @@ document.getElementById("openButton").addEventListener("click", function() {
 		}, 1800);
 
 	}
-	setTimeout(() => startNudgeLoop(this), 3000);
+	if (timesClicked > 0) {
+		setTimeout(() => startNudgeLoop(this), 3000);
+	} else {
+		setTimeout(() => startNudgeLoop(this), 1000);
+	}
+	timesClicked++;
 });
 
