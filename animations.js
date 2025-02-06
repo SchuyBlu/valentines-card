@@ -18,6 +18,7 @@ let opened = false;
 let changed = 0;
 let nudgeInterval = null;
 let timesClicked = 0;
+let animationRunning  = false;
 
 // Changes the message on the card.
 // Returns: changed, as changed is not reference and functions as a bool.
@@ -75,6 +76,11 @@ document.getElementById("openButton").addEventListener("click", function() {
 	const lid = document.querySelector(".lid");
 	const card = document.querySelector(".card");
 
+	if (animationRunning) {
+		return;
+	}
+	animationRunning = true;
+
 	stopNudgeLoop();
 
 	if (!opened) {
@@ -120,5 +126,9 @@ document.getElementById("openButton").addEventListener("click", function() {
 		setTimeout(() => startNudgeLoop(this), 1000);
 	}
 	timesClicked++;
+
+	setTimeout(() => {
+		animationRunning = false;
+	}, 1800);
 });
 
