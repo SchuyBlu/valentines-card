@@ -53,7 +53,7 @@ function changeMessage(messages, changed) {
 
 function triggerNudge(button) {
 	button.classList.remove("button-nudge");
-	setTimeout(() => button.classList.add("button-nudge"), 5000);
+	setTimeout(() => button.classList.add("button-nudge"), 3000);
 }
 
 function startNudgeLoop(button) {
