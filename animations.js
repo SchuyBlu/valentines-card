@@ -1,4 +1,4 @@
-const all_messages = [
+const ALL_MESSAGES = [
 	"Do you know!\nWhat's on the Valentine's Day menu?\nMe n U :)",
 	"Still hoping it's Me + u btw :)",
 	"\uD83D\uDC9E You had me at \"Hello\" :)",
@@ -13,45 +13,63 @@ const all_messages = [
 	"FYI\nCupids looking for an update - \nMight as well put our names in!",
 	"Pop Quiz!\nWhat sounds better: chocolates alone?\nOr chocolates with me? :)",
 ]
-let messages = structuredClone(all_messages);
+
+// state variables
+let messages = [...ALL_MESSAGES];
+let messageIndex = 0;
 let opened = false;
-let changed = 0;
-let nudgeInterval = null;
 let timesClicked = 0;
 let animationRunning  = false;
+let nudgeInterval = null;
 
-// Changes the message on the card.
-// Returns: changed, as changed is not reference and functions as a bool.
-function changeMessage(messages, changed) {
-	let text = document.getElementById("message");
-	let new_text = null;
+// grab elements just once
+let lid = document.querySelector(".lid");
+let card = document.querySelector(".card");
+let messageElement = document.getElementById("message");
+let button = document.getElementById("openButton");
 
-	// Reset array if exhausted options
+
+/*
+ * Returns the next messages and updates the state of `messages`.
+ */
+function getNextMessage() {
 	if (messages.length === 0) {
-		changed = 0;
-		messages = structuredClone(all_messages);
+		messages = [...ALL_MESSAGES];
+		messageIndex = 0;
 	}
 
-	let index = Math.floor(Math.random() * messages.length);
+	// Let the first two messages play out in order, the ones after can be
+	// randomized.
+	let index = (messageIndex <= 1) 
+		? 0 
+		: Math.floor(Math.random() * messages.length);
 
-	if (changed === 0 || changed === 1) {
-		index = 0;
-		new_text = messages[0];
-	} else {
-		new_text = messages[index];
-	}
-	changed++;
-	let final_text = document.createTextNode(new_text);
-	while (text.firstChild) {
-		text.removeChild(text.firstChild);
-	}
-	text.appendChild(final_text);
-
+	let newMessage = messages[index];
 	messages.splice(index, 1);
+	
+	messageIndex++;
 
-	return changed;
+	return newMessage;
 }
 
+
+/*
+ * Updates the text displayed on the card.
+ */
+function updateCardMessage() {
+	let text = getNextMessage();
+
+	let textNode = document.createTextNode(text);
+	while(messageElement.firstChild) {
+		messageElement.removeChild(messageElement.firstChild);
+	}
+	messageElement.appendChild(textNode);
+}
+
+
+/*
+ * Adds a "nudge" animation to the button.
+ */
 function triggerNudge(button) {
 	button.classList.remove("button-nudge");
 	requestAnimationFrame(() => {
@@ -59,12 +77,20 @@ function triggerNudge(button) {
 	})
 }
 
+
+/*
+ * Starts the loop for the "nudge" animation.
+ */
 function startNudgeLoop(button) {
 	if (!nudgeInterval) {
 		nudgeInterval = setInterval(() => triggerNudge(button), 2000);
 	}
 }
 
+
+/*
+ * Kills the loop for the "nudge" animation.
+ */
 function stopNudgeLoop() {
 	if (nudgeInterval) {
 		clearInterval(nudgeInterval);
@@ -72,29 +98,28 @@ function stopNudgeLoop() {
 	}
 }
 
-document.getElementById("openButton").addEventListener("click", function() {
-	const lid = document.querySelector(".lid");
-	const card = document.querySelector(".card");
 
-	if (animationRunning) {
-		return;
-	}
+button.addEventListener("click", function() {
+	// Prevents clicking and spam while animation runs.
+	if (animationRunning) return;
 	animationRunning = true;
 
 	stopNudgeLoop();
 
 	if (!opened) {
-		// Tranform lid
-		changed = changeMessage(messages, changed);
+		// Opening card for the first time
+		updateCardMessage();
 		lid.style.transform = "rotatex(-180deg)";
 
 		setTimeout(() => {
 			card.style.zIndex = "3";
 			card.style.transform = "translatey(-9.5vmin)";
 		}, 400);
+
 		opened = true;
 
 	} else {
+		// Re-open sequence after first time
 		card.style.transform = "translatey(0)";
 
 		// Close lid
@@ -103,9 +128,9 @@ document.getElementById("openButton").addEventListener("click", function() {
 			lid.style.transform = "rotatex(0deg)";
 		}, 500);
 
-		// Change message
+		// Update message while closeed
 		setTimeout(() => {
-			changed = changeMessage(messages, changed);
+			updateCardMessage();
 		}, 900);
 
 		// Open lid
@@ -120,21 +145,17 @@ document.getElementById("openButton").addEventListener("click", function() {
 		}, 1800);
 
 	}
-	if (timesClicked > 0) {
-		setTimeout(() => startNudgeLoop(this), 3000);
-	} else {
-		setTimeout(() => startNudgeLoop(this), 1000);
-	}
-	if (timesClicked > 0) {
-		setTimeout(() => {
-			animationRunning = false;
-		}, 2300);
-	} else {
-		setTimeout(() => {
-			animationRunning = false;
-		}, 1800);
-	}
-	timesClicked++;
 
+	// Decide when to resume nudging the button. Changes depending on whether
+	// its the first time opening the card or subsequent.
+	let nudgeDelay = timesClicked > 0 ? 3000 : 1000;
+	setTimeout(() => startNudgeLoop(this), nudgeDelay);
+
+	let animationEndDelay = timesClicked > 0 ? 2300 : 1800;
+	setTimeout(() => {
+		animationRunning = false;
+	}, animationEndDelay);
+
+	timesClicked++;
 });
 
