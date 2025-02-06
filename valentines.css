@@ -98,6 +98,10 @@ body {
 	left: -0.5vmin;
 }
 
+.lid, .card { 
+	will-change: transform;
+}
+
 .lid {
 	position: absolute;
 	height: 0;
