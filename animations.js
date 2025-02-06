@@ -2,7 +2,7 @@ const ALL_MESSAGES = [
 	"Do you know!\nWhat's on the Valentine's Day menu?\nMe n U :)",
 	"Still hoping it's Me + u btw :)",
 	"\uD83D\uDC9E You had me at \"Hello\" :)",
-	"The things I'd do for a little chocolate \uD83D\uDC95",
+	"The things I'd do for a little chocolate \uD83D\uDE09",
 	"Hey you!\nNot sure if cupid messed up but\nhere I am :)",
 	"I was never into calculus but\nU n Me?\nMight add up :)",
 	"U + Me = a decent team\nWanna try it out? :)",
