@@ -113,10 +113,6 @@ document.getElementById("openButton").addEventListener("click", function() {
 		}, 1800);
 
 	}
-	if (timesClicked > 1) {
-		setTimeout(() => startNudgeLoop(this), 4000);
-	} else {
-		setTimeout(() => startNudgeLoop(this), 3000);
-	}
+	setTimeout(() => startNudgeLoop(this), 3000);
 });
 
