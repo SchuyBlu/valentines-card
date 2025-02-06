@@ -151,7 +151,7 @@ button.addEventListener("click", function() {
 	let nudgeDelay = timesClicked > 0 ? 3000 : 1000;
 	setTimeout(() => startNudgeLoop(this), nudgeDelay);
 
-	let animationEndDelay = timesClicked > 0 ? 2300 : 1800;
+	let animationEndDelay = timesClicked > 0 ? 2300 : 1500;
 	setTimeout(() => {
 		animationRunning = false;
 	}, animationEndDelay);
