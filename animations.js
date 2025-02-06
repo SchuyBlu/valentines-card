@@ -16,6 +16,8 @@ const all_messages = [
 let messages = structuredClone(all_messages);
 let opened = false;
 let changed = 0;
+let nudgeInterval = null;
+let timesClicked = 0;
 
 // Changes the message on the card.
 // Returns: changed, as changed is not reference and functions as a bool.
@@ -49,10 +51,32 @@ function changeMessage(messages, changed) {
 	return changed;
 }
 
+function triggerNudge(button) {
+	button.classList.remove("button-nudge");
+	setTimeout(() => button.classList.add("button-nudge"), 5000);
+}
+
+function startNudgeLoop(button) {
+	if (!nudgeInterval) {
+		nudgeInterval = setInterval(() => triggerNudge(button), 2000);
+	}
+}
+
 document.getElementById("openButton").addEventListener("click", function() {
 	const lid = document.querySelector(".lid");
 	const card = document.querySelector(".card");
 
+	startNudgeLoop(this);
+
+	// Only nudge on first click.
+	if (timesClicked === 1) {
+		if (nudgeInterval) {
+			clearInterval(nudgeInterval);
+			nudgeInterval = null;
+		}
+	}
+	console.log(timesClicked);
+	timesClicked++;
 
 	if (!opened) {
 		// Tranform lid
@@ -89,6 +113,7 @@ document.getElementById("openButton").addEventListener("click", function() {
 			card.style.zIndex = "3";
 			card.style.transform = "translatey(-9.5vmin)";
 		}, 1800);
+
 	}
 });
 
