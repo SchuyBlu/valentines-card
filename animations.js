@@ -7,7 +7,7 @@ const all_messages = [
 	"I was never into calculus but\nU n Me?\nMight add up :)",
 	"U + Me = a decent team\nWanna try it out? :)",
 	"Be my sorta valentine?\nWe can work out the details later",
-	"We get together like wifi and meme\nalways connected ;)",
+	"We get together like wifi and memes!\nalways connected ;)",
 	"Hey, fun fact!\nThis Valentine's Day recipe call\nfor the two of us \uD83D\uDC97",
 	"Heads up!\nThe best menu special I found this year\nIs U :)",
 	"FYI\nCupids looking for an update - \nMight as well put our names in!",
