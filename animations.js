@@ -125,10 +125,16 @@ document.getElementById("openButton").addEventListener("click", function() {
 	} else {
 		setTimeout(() => startNudgeLoop(this), 1000);
 	}
+	if (timesClicked > 0) {
+		setTimeout(() => {
+			animationRunning = false;
+		}, 2300);
+	} else {
+		setTimeout(() => {
+			animationRunning = false;
+		}, 1800);
+	}
 	timesClicked++;
 
-	setTimeout(() => {
-		animationRunning = false;
-	}, 1800);
 });
 
